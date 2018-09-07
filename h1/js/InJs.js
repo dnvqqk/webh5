@@ -1,0 +1,1 @@
+var InJs=function(){return function(){document.write('<script src="js/WmyLoadJs.js?'+Date.now()+'"><\/script>')}}();new InJs;
