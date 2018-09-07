@@ -1,30 +1,36 @@
-var __extends = (this && this.__extends) || function (d, b) {
-    for (var p in b) if (b.hasOwnProperty(p)) d[p] = b[p];
-    function __() { this.constructor = d; }
-    d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
-};
-var WmyCamera = (function (_super) {
+var __extends = (this && this.__extends) || (function () {
+    var extendStatics = Object.setPrototypeOf ||
+        ({ __proto__: [] } instanceof Array && function (d, b) { d.__proto__ = b; }) ||
+        function (d, b) { for (var p in b) if (b.hasOwnProperty(p)) d[p] = b[p]; };
+    return function (d, b) {
+        extendStatics(d, b);
+        function __() { this.constructor = d; }
+        d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
+    };
+})();
+var WmyCamera = /** @class */ (function (_super) {
     __extends(WmyCamera, _super);
     function WmyCamera() {
-        _super.call(this);
-        this._upNum = 0;
-        this._distance = 0;
-        this._angleNum = 0;
-        this._dx = 0;
-        this._dy = 0;
-        this.lastMouseX = 0;
-        this.lastMouseY = 0;
-        this._isMouseDown = false;
+        var _this = _super.call(this) || this;
+        _this._upNum = 0;
+        _this._distance = 0;
+        _this._angleNum = 0;
+        _this._dx = 0;
+        _this._dy = 0;
+        _this.lastMouseX = 0;
+        _this.lastMouseY = 0;
+        _this._isMouseDown = false;
         //上次记录的两个触模点之间距离
-        this._lastDistance = 0;
-        this._lastX = 0;
-        this._lastZ = 0;
-        this._touchesNum = 0;
-        this._v3 = Laya.Vector3.ZERO;
-        this._rotaionSpeed = 0.01;
+        _this._lastDistance = 0;
+        _this._lastX = 0;
+        _this._lastZ = 0;
+        _this._touchesNum = 0;
+        _this._v3 = Laya.Vector3.ZERO;
+        _this._rotaionSpeed = 0.01;
         if (WmyCamera._this == null) {
-            WmyCamera._this = this;
+            WmyCamera._this = _this;
         }
+        return _this;
     }
     Object.defineProperty(WmyCamera, "getThis", {
         get: function () {

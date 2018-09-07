@@ -1,4 +1,4 @@
-var WmyLoad3d = (function () {
+var WmyLoad3d = /** @class */ (function () {
     function WmyLoad3d() {
         this._meshArr = [];
         this._meshOk = false;

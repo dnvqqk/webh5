@@ -1,4 +1,4 @@
-var WmyLoadMats = (function () {
+var WmyLoadMats = /** @class */ (function () {
     function WmyLoadMats() {
         this._matsUrlArr = [];
         this._matOk = false;

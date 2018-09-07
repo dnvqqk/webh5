@@ -1,18 +1,24 @@
-var __extends = (this && this.__extends) || function (d, b) {
-    for (var p in b) if (b.hasOwnProperty(p)) d[p] = b[p];
-    function __() { this.constructor = d; }
-    d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
-};
-var WmyPhysicsWorld_Character = (function (_super) {
+var __extends = (this && this.__extends) || (function () {
+    var extendStatics = Object.setPrototypeOf ||
+        ({ __proto__: [] } instanceof Array && function (d, b) { d.__proto__ = b; }) ||
+        function (d, b) { for (var p in b) if (b.hasOwnProperty(p)) d[p] = b[p]; };
+    return function (d, b) {
+        extendStatics(d, b);
+        function __() { this.constructor = d; }
+        d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
+    };
+})();
+var WmyPhysicsWorld_Character = /** @class */ (function (_super) {
     __extends(WmyPhysicsWorld_Character, _super);
     function WmyPhysicsWorld_Character() {
-        _super.apply(this, arguments);
-        this.moveSpeed = 0.03;
-        this.jumpSpeed = 5;
-        this.isU = false;
-        this.isD = false;
-        this.isL = false;
-        this.isR = false;
+        var _this = _super !== null && _super.apply(this, arguments) || this;
+        _this.moveSpeed = 0.03;
+        _this.jumpSpeed = 5;
+        _this.isU = false;
+        _this.isD = false;
+        _this.isL = false;
+        _this.isR = false;
+        return _this;
     }
     Object.defineProperty(WmyPhysicsWorld_Character.prototype, "isGrounded", {
         get: function () {
@@ -33,14 +39,6 @@ var WmyPhysicsWorld_Character = (function (_super) {
         var sphereShape = new Laya.CapsuleColliderShape(sShape.radius, sShape.length, sShape.orientation);
         sphereShape.localOffset = sShape.localOffset;
         this.character.colliderShape = sphereShape;
-    };
-    WmyPhysicsWorld_Character.prototype.onJump = function (isJump) {
-        this._keyJup = isJump;
-        var isGrounded = this.character.isGrounded;
-        if (!this._isJump && isJump && isGrounded) {
-            this.character.jump();
-        }
-        this._isJump = isJump;
     };
     WmyPhysicsWorld_Character.prototype.onUpdate = function () {
         this.character.jumpSpeed = this.jumpSpeed;

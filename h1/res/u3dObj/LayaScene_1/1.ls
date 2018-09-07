@@ -5673,7 +5673,27 @@
 								}
 							]
 						},
-						"components":[],
+						"components":[
+							{
+								"type":"PhysicsCollider",
+								"restitution":0,
+								"friction":0.5,
+								"rollingFriction":0,
+								"shapes":[
+									{
+										"type":"CapsuleColliderShape",
+										"center":[
+											4.470348E-08,
+											1.27,
+											-7.450581E-08
+										],
+										"radius":0.4,
+										"height":3.35
+									}
+								],
+								"isTrigger":false
+							}
+						],
 						"child":[
 							{
 								"type":"ShuriKenParticle3D",
@@ -6936,7 +6956,27 @@
 								}
 							]
 						},
-						"components":[],
+						"components":[
+							{
+								"type":"PhysicsCollider",
+								"restitution":0,
+								"friction":0.5,
+								"rollingFriction":0,
+								"shapes":[
+									{
+										"type":"CapsuleColliderShape",
+										"center":[
+											4.470348E-08,
+											1.27,
+											-7.450581E-08
+										],
+										"radius":0.4,
+										"height":3.35
+									}
+								],
+								"isTrigger":false
+							}
+						],
 						"child":[
 							{
 								"type":"ShuriKenParticle3D",
@@ -8199,7 +8239,27 @@
 								}
 							]
 						},
-						"components":[],
+						"components":[
+							{
+								"type":"PhysicsCollider",
+								"restitution":0,
+								"friction":0.5,
+								"rollingFriction":0,
+								"shapes":[
+									{
+										"type":"CapsuleColliderShape",
+										"center":[
+											4.470348E-08,
+											1.27,
+											-7.450581E-08
+										],
+										"radius":0.4,
+										"height":3.35
+									}
+								],
+								"isTrigger":false
+							}
+						],
 						"child":[
 							{
 								"type":"ShuriKenParticle3D",
@@ -9462,7 +9522,30 @@
 								}
 							]
 						},
-						"components":[],
+						"components":[
+							{
+								"type":"PhysicsCollider",
+								"restitution":0,
+								"friction":0.5,
+								"rollingFriction":0,
+								"shapes":[
+									{
+										"type":"BoxColliderShape",
+										"center":[
+											0,
+											1.721608,
+											1.939528E-15
+										],
+										"size":[
+											0.85,
+											3.443216,
+											0.85
+										]
+									}
+								],
+								"isTrigger":false
+							}
+						],
 						"child":[]
 					},
 					{
@@ -9495,7 +9578,30 @@
 								}
 							]
 						},
-						"components":[],
+						"components":[
+							{
+								"type":"PhysicsCollider",
+								"restitution":0,
+								"friction":0.5,
+								"rollingFriction":0,
+								"shapes":[
+									{
+										"type":"BoxColliderShape",
+										"center":[
+											0,
+											1.721608,
+											1.939528E-15
+										],
+										"size":[
+											0.85,
+											3.443216,
+											0.85
+										]
+									}
+								],
+								"isTrigger":false
+							}
+						],
 						"child":[]
 					}
 				]
@@ -9613,6 +9719,26 @@
 													{
 														"name":"Walk",
 														"clipPath":"Assets/wmyObj/player/Player1/Char1@Walk-Walk.lani"
+													},
+													{
+														"name":"Jump1",
+														"clipPath":"Assets/wmyObj/player/Player1/Char1@Jump-Jump1.lani"
+													},
+													{
+														"name":"Jump2",
+														"clipPath":"Assets/wmyObj/player/Player1/Char1@Jump-Jump2.lani"
+													},
+													{
+														"name":"Punch1",
+														"clipPath":"Assets/wmyObj/player/Player1/Char1@PunchCombo-Punch1.lani"
+													},
+													{
+														"name":"Punch2",
+														"clipPath":"Assets/wmyObj/player/Player1/Char1@PunchCombo-Punch2.lani"
+													},
+													{
+														"name":"Punch3",
+														"clipPath":"Assets/wmyObj/player/Player1/Char1@PunchCombo-Punch3.lani"
 													}
 												]
 											}
@@ -9705,198 +9831,6 @@
 								1.500001,
 								0,
 								1.500001
-							],
-							"meshPath":"Library/unity default resources-Cube.lm",
-							"materials":[
-								{
-									"type":"Laya.BlinnPhongMaterial",
-									"path":"Assets/wmyObj/mats/Mat_BlobShadow.lmat"
-								}
-							]
-						},
-						"components":[],
-						"child":[]
-					}
-				]
-			},
-			{
-				"type":"Sprite3D",
-				"props":{
-					"isStatic":false,
-					"name":"Player2",
-					"layer":9,
-					"position":[
-						-11.21,
-						0,
-						-1
-					],
-					"rotation":[
-						0,
-						0,
-						0,
-						-1
-					],
-					"scale":[
-						1,
-						1,
-						1
-					]
-				},
-				"components":[
-					{
-						"type":"PhysicsCollider",
-						"restitution":0,
-						"friction":0.5,
-						"rollingFriction":0,
-						"shapes":[
-							{
-								"type":"CapsuleColliderShape",
-								"center":[
-									0,
-									0.85,
-									0
-								],
-								"radius":0.3,
-								"height":1.8
-							}
-						],
-						"isTrigger":false
-					}
-				],
-				"child":[
-					{
-						"type":"Sprite3D",
-						"props":{
-							"isStatic":false,
-							"name":"GFX",
-							"layer":0,
-							"position":[
-								0,
-								0,
-								0
-							],
-							"rotation":[
-								0,
-								-0.7071068,
-								0,
-								-0.7071068
-							],
-							"scale":[
-								1,
-								1,
-								1
-							]
-						},
-						"components":[
-							{
-								"type":"Animator",
-								"avatar":{
-									"path":"Assets/wmyObj/player/Player2/Player2Rig-GFX-Player2RigAvatar.lav",
-									"linkSprites":{}
-								},
-								"layers":[
-									{
-										"name":"Base Layer",
-										"weight":0,
-										"blendingMode":0,
-										"states":[
-											{
-												"name":"Idle",
-												"clipPath":"Assets/wmyObj/player/Player1/Char1@Idle-Idle.lani"
-											},
-											{
-												"name":"Walk",
-												"clipPath":"Assets/wmyObj/player/Player1/Char1@Walk-Walk.lani"
-											}
-										]
-									}
-								],
-								"cullingMode":0,
-								"playOnWake":true
-							}
-						],
-						"child":[
-							{
-								"type":"SkinnedMeshSprite3D",
-								"props":{
-									"isStatic":false,
-									"name":"Char",
-									"layer":0,
-									"position":[
-										2.503396E-08,
-										0,
-										-2.634525E-07
-									],
-									"rotation":[
-										-2.185569E-08,
-										0,
-										0,
-										-1
-									],
-									"scale":[
-										1,
-										1,
-										1
-									],
-									"rootBone":"Bip001",
-									"boundBox":{
-										"min":[
-											-0.3132723,
-											-0.8925645,
-											-0.9521302
-										],
-										"max":[
-											0.239058,
-											0.9231591,
-											0.8756062
-										]
-									},
-									"boundSphere":{
-										"center":[
-											-0.03710717,
-											0.01529729,
-											-0.03826201
-										],
-										"radius":1.317435
-									},
-									"materials":[
-										{
-											"type":"Laya.BlinnPhongMaterial",
-											"path":"Assets/wmyObj/mats_player/Mat_Player2_Clothing.lmat"
-										},
-										{
-											"type":"Laya.BlinnPhongMaterial",
-											"path":"Assets/wmyObj/mats_player/Mat_Player2_Skin.lmat"
-										}
-									],
-									"meshPath":"Assets/wmyObj/player/Player2/Player2Rig-Char.lm"
-								},
-								"components":[],
-								"child":[]
-							}
-						]
-					},
-					{
-						"type":"MeshSprite3D",
-						"props":{
-							"isStatic":false,
-							"name":"yy",
-							"layer":9,
-							"position":[
-								0,
-								0.01,
-								0
-							],
-							"rotation":[
-								0,
-								0,
-								0,
-								-1
-							],
-							"scale":[
-								1.5,
-								0,
-								1.5
 							],
 							"meshPath":"Library/unity default resources-Cube.lm",
 							"materials":[

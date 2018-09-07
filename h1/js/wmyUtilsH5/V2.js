@@ -1,4 +1,4 @@
-var V2 = (function () {
+var V2 = /** @class */ (function () {
     function V2(_x, _y) {
         this.x = 0;
         this.y = 0;

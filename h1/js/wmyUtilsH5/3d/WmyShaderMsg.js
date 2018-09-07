@@ -1,4 +1,4 @@
-var WmyShaderMsg = (function () {
+var WmyShaderMsg = /** @class */ (function () {
     function WmyShaderMsg() {
     }
     /**

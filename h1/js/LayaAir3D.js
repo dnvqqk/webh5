@@ -1,5 +1,5 @@
 // 程序入口
-var LayaAir3D = (function () {
+var LayaAir3D = /** @class */ (function () {
     function LayaAir3D() {
         LayaAir3D._this = this;
         // //初始化引擎
@@ -16,7 +16,7 @@ var LayaAir3D = (function () {
         Laya.stage.alignV = "middle";
         Laya.Stat.show();
         Laya.stage.addChild(fairygui.GRoot.inst.displayObject);
-        Wmy_Load_Mag.getThis.onLoadWetData("loadInfo.txt?" + Date.now(), Laya.Handler.create(this, this.onLoadLoad));
+        Wmy_Load_Mag.getThis.onLoadWetData("res/loadInfo.txt?" + Date.now(), Laya.Handler.create(this, this.onLoadLoad));
     }
     LayaAir3D.prototype.onLoadLoad = function () {
         var resObj = Wmy_Load_Mag.getThis.getResObj("load");

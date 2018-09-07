@@ -1,4 +1,4 @@
-var WmyUtils3D = (function () {
+var WmyUtils3D = /** @class */ (function () {
     function WmyUtils3D() {
     }
     WmyUtils3D.getObj3d = function (target, objName) {

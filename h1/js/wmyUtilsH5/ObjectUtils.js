@@ -1,4 +1,4 @@
-var ObjectUtils = (function () {
+var ObjectUtils = /** @class */ (function () {
     function ObjectUtils() {
     }
     ObjectUtils.onGetInstanceName = function (name) {

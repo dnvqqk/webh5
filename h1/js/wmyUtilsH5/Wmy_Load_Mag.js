@@ -1,4 +1,4 @@
-var Wmy_Load_Mag = (function () {
+var Wmy_Load_Mag = /** @class */ (function () {
     function Wmy_Load_Mag() {
         this._wetData = {};
         this.resUrl = "";
@@ -30,6 +30,9 @@ var Wmy_Load_Mag = (function () {
             catch (error) { }
             try {
                 var assetUrl = arr[0]["assetUrl"];
+                if (WmyLoadJs.assetUrl != "") {
+                    assetUrl = WmyLoadJs.assetUrl;
+                }
                 if (document.URL.indexOf("file:///") >= 0) {
                     assetUrl = "";
                 }
@@ -38,6 +41,9 @@ var Wmy_Load_Mag = (function () {
             catch (error) { }
             try {
                 V = arr[0]["V"];
+                if (WmyLoadJs.assetUrl != "") {
+                    V = WmyLoadJs.V;
+                }
             }
             catch (error) { }
             if (V != null) {

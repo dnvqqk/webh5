@@ -1,19 +1,25 @@
-var __extends = (this && this.__extends) || function (d, b) {
-    for (var p in b) if (b.hasOwnProperty(p)) d[p] = b[p];
-    function __() { this.constructor = d; }
-    d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
-};
+var __extends = (this && this.__extends) || (function () {
+    var extendStatics = Object.setPrototypeOf ||
+        ({ __proto__: [] } instanceof Array && function (d, b) { d.__proto__ = b; }) ||
+        function (d, b) { for (var p in b) if (b.hasOwnProperty(p)) d[p] = b[p]; };
+    return function (d, b) {
+        extendStatics(d, b);
+        function __() { this.constructor = d; }
+        d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
+    };
+})();
 var B = Laya.Browser;
-var WmyUtils = (function (_super) {
+var WmyUtils = /** @class */ (function (_super) {
     __extends(WmyUtils, _super);
     function WmyUtils() {
-        _super.call(this);
-        this._eventList = new Array();
+        var _this = _super.call(this) || this;
+        _this._eventList = new Array();
         // Laya.timer.frameLoop(1,this,this.__loop);
-        Laya.stage.on(laya.events.Event.MOUSE_DOWN, this, this.__onTouchDown);
-        Laya.stage.on(laya.events.Event.MOUSE_UP, this, this.__onTouchUp);
-        Laya.stage.on(laya.events.Event.MOUSE_MOVE, this, this.__OnMouseMOVE);
-        Laya.stage.on(Laya.Event.RESIZE, this, this.__onResize);
+        Laya.stage.on(laya.events.Event.MOUSE_DOWN, _this, _this.__onTouchDown);
+        Laya.stage.on(laya.events.Event.MOUSE_UP, _this, _this.__onTouchUp);
+        Laya.stage.on(laya.events.Event.MOUSE_MOVE, _this, _this.__OnMouseMOVE);
+        Laya.stage.on(Laya.Event.RESIZE, _this, _this.__onResize);
+        return _this;
     }
     Object.defineProperty(WmyUtils, "getThis", {
         get: function () {
@@ -116,9 +122,10 @@ var WmyUtils = (function (_super) {
             Laya.stage.event(Laya.Event.MOUSE_UP, evt);
         }
     };
-    WmyUtils.onNumTo = function (n) {
+    WmyUtils.onNumTo = function (n, l) {
+        if (l === void 0) { l = 2; }
         if ((n + "").indexOf(".") >= 0) {
-            n = parseFloat(n.toFixed(2));
+            n = parseFloat(n.toFixed(l));
         }
         return n;
     };
