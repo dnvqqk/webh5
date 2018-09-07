@@ -28,7 +28,8 @@ var WmyUtils3D = (function () {
         var _this = this;
         var assetUrl = Wmy_Load_Mag.assetUrl;
         var newMatsUrl = assetUrl + matsUrl + "wmyMats.txt";
-        Laya.loader.load(newMatsUrl, Laya.Handler.create(this, function (assetUrl, matsUrl, shadersUrl, data) {
+        var newShadersUrl = assetUrl + shadersUrl;
+        Laya.loader.load(newMatsUrl, Laya.Handler.create(this, function (matsUrl, shadersUrl, data) {
             var array = data["mats"];
             for (var i = 0; i < array.length; i++) {
                 var obj = array[i];
@@ -37,13 +38,13 @@ var WmyUtils3D = (function () {
                 var target3D = WmyUtils3D.getObj3d(target, obj["targetName"]);
                 if (target3D == null)
                     continue;
-                var matUrl = assetUrl + matsUrl + obj["matUrl"] + Wmy_Load_Mag.V;
-                var shaderNameUrl = assetUrl + shadersUrl + obj["shaderName"] + ".xml" + Wmy_Load_Mag.V;
+                var matUrl = matsUrl + obj["matUrl"] + Wmy_Load_Mag.V;
+                var shaderNameUrl = shadersUrl + obj["shaderName"] + ".xml" + Wmy_Load_Mag.V;
                 Laya.BaseMaterial.load(matUrl, Laya.Handler.create(_this, function (target3D, shaderNameUrl, m) {
                     WmyShaderMsg.setShader(target3D, m, shaderNameUrl);
                 }, [target3D, shaderNameUrl]));
             }
-        }, [assetUrl, matsUrl, shadersUrl]), null, Laya.Loader.JSON);
+        }, [matsUrl, newShadersUrl]), null, Laya.Loader.JSON);
     };
     WmyUtils3D.aniPlay = function (target, targetName, aniName) {
         var target3d = this.getObj3d(target, targetName);
