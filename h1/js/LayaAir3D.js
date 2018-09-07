@@ -41,7 +41,7 @@ var LayaAir3D = (function () {
             //添加3D场景
             this.scene3D = Laya.loader.getRes(this._urlList[0]);
             WmyUtils3D.setShaderAll(this.scene3D, "res/mats/", "res/shaders/");
-            Laya.timer.once(200, this, function () {
+            Laya.timer.once(500, this, function () {
                 _this.onMain();
                 fairygui.GRoot.inst.removeChild(_this._loadView);
                 _this._loadView = null;
