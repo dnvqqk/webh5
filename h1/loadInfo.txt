@@ -1,0 +1,37 @@
+[
+    {"assetUrl":"https://dnvqqk.github.io/webh5/h1/", "V":"?9_7_1144"},
+
+    {"resName":"load",
+    "type":"",
+    "Resres":[
+    {"resUrl":"res/fui/load.txt"}
+    ]},
+    
+    {"resName":"main",
+    "type":"ui",
+    "Resres":[
+    {"resUrl":"res/fui/main.txt"}
+    ]},
+
+    {"resName":"mats",
+    "type":"mats",
+    "Resres":[
+    {"resUrl":"res/mats/wmyMats.txt?1"}
+    ]},
+    
+    {"resName":"cube01",
+    "type":"cubeMap",
+    "Resres":[
+    {"resUrl":"res/cubeMap/01/01.ltc"}
+    ]},
+
+    {"resName":"u3dObj",
+    "type":"u3d",
+    "Resres":[
+    {"resUrl":"res/u3dObj/LayaScene_1/1.ls"}
+    ]}
+    
+    
+
+
+]
