@@ -1,0 +1,1 @@
+var MainJs=function(){function n(){n.writeJs("wmyData/require.min.js");var e="?"+Date.now();n.writeJs("js/WmyLoadJs.js",e)}return n.writeJs=function(n,e,i){void 0===e&&(e=""),void 0===i&&(i="");var t=document.createElement("script");t.async=!1,t.src=i+n+e,document.body.appendChild(t)},n}();new MainJs;
