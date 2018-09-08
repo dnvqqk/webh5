@@ -1,5 +1,5 @@
 [
-    {"assetUrl":"https://dnvqqk.github.io/webh5/h1/", "V":"?9_7_1144"},
+    {"assetUrl":"https://dnvqqk.github.io/webh5/h1/", "V":"?9_7_1144", "jsV":"?9_7_1144"},
 
     {"resName":"load",
     "type":"",
