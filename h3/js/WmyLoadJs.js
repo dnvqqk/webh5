@@ -70,8 +70,9 @@ var WmyLoadJs = /** @class */ (function () {
         var num = 0;
         WmyLoadJs.html["innerText"] = "正在加载启动程序...(" + num + "/" + totalNum + ")";
         jsUrlArr.forEach(function (js) {
+            WmyLoadJs.html["innerText"] = js + "";
             var load = new laya.net.LoaderManager();
-            load.load(js, laya.utils.Handler.create(_this, function () {
+            load.load(js, new laya.utils.Handler(_this, function () {
                 num += 1;
                 WmyLoadJs.html["innerText"] = "正在加载启动程序...(" + num + "/" + totalNum + ")";
                 if (num == totalNum) {
