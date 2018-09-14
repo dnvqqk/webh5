@@ -59,7 +59,6 @@ var WmyLoadJs = /** @class */ (function () {
         WmyLoadJs.jssArr();
         //正在加载启动程序...
         //document
-        WmyLoadJs.html["innerText"] = "正在加载启动程序...(0/0)";
         var jsUrlArr = [];
         WmyLoadJs._ggJssArr.forEach(function (js) {
             jsUrlArr.push(WmyLoadJs.jsUrl + js + WmyLoadJs.ggJsv);
@@ -69,6 +68,7 @@ var WmyLoadJs = /** @class */ (function () {
         });
         var totalNum = jsUrlArr.length;
         var num = 0;
+        WmyLoadJs.html["innerText"] = "正在加载启动程序...(" + num + "/" + totalNum + ")";
         jsUrlArr.forEach(function (js) {
             var load = new laya.net.LoaderManager();
             load.load(js, laya.utils.Handler.create(_this, function () {
