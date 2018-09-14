@@ -51,7 +51,7 @@ var WmyLoadJs = /** @class */ (function () {
         WmyLoadJs._jssArr.push("js/wmyUtilsH5/3d/WmyPhysicsWorld_Character.js");
         WmyLoadJs._jssArr.push("js/player/PlayerKz.js");
         WmyLoadJs._jssArr.push("js/player/UnitAnimator.js");
-        WmyLoadJs._jssArr.push("js/LayaAir3D.js");
+        //WmyLoadJs._jssArr.push("js/LayaAir3D.js");
     };
     WmyLoadJs.mainJs = function () {
         WmyLoadJs.ggJssArr();
@@ -68,19 +68,15 @@ var WmyLoadJs = /** @class */ (function () {
         var totalNum = jsUrlArr.length;
         var num = 0;
         WmyLoadJs.html["innerText"] = "正在加载启动程序...(" + num + "/" + totalNum + ")";
-        for (var i = 0; i < jsUrlArr.length; i++) {
-            var url = jsUrlArr[i] + "";
-            var load = new laya.net.LoaderManager();
-            load.load(url, laya.utils.Handler.create(this, function () {
+        jsUrlArr.forEach(function (js) {
+            require([js], function () {
                 num += 1;
                 WmyLoadJs.html["innerText"] = "正在加载启动程序...(" + num + "/" + totalNum + ")";
-                // if(num==totalNum){
-                //     WmyLoadJs.loadJs(WmyLoadJs._ggJssArr,WmyLoadJs.ggJsv,WmyLoadJs.jsUrl,()=>{
-                //         WmyLoadJs.loadJs(WmyLoadJs._jssArr,WmyLoadJs.jsV,WmyLoadJs.assetUrl);
-                //     });
-                // }
-            }), null, laya.net.Loader.TEXT);
-        }
+                if (num == totalNum) {
+                    WmyLoadJs.loadJs(["js/LayaAir3D.js"], WmyLoadJs.jsV, WmyLoadJs.assetUrl);
+                }
+            });
+        });
     };
     WmyLoadJs.loadJs = function (jsArr, v, jsUrl, fun) {
         if (v === void 0) { v = ""; }
