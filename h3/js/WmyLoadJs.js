@@ -69,10 +69,13 @@ var WmyLoadJs = /** @class */ (function () {
         var totalNum = jsUrlArr.length;
         var num = 0;
         WmyLoadJs.html["innerText"] = "正在加载启动程序...(" + num + "/" + totalNum + ")";
+        for (var i = 0; i < jsUrlArr.length; i++) {
+            var url = jsUrlArr[i] + "";
+            WmyLoadJs.html["innerText"] = url;
+        }
         jsUrlArr.forEach(function (js) {
-            WmyLoadJs.html["innerText"] = js + "";
             var load = new laya.net.LoaderManager();
-            load.load(js, new laya.utils.Handler(_this, function () {
+            load.load(js, laya.utils.Handler.create(_this, function () {
                 num += 1;
                 WmyLoadJs.html["innerText"] = "正在加载启动程序...(" + num + "/" + totalNum + ")";
                 if (num == totalNum) {
