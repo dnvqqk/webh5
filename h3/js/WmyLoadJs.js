@@ -1,5 +1,6 @@
 var WmyLoadJs = /** @class */ (function () {
     function WmyLoadJs() {
+        var _this = this;
         try {
             WmyLoadJs.d = document;
             WmyLoadJs.html = WmyLoadJs.d["body"]["children"][0];
@@ -7,27 +8,29 @@ var WmyLoadJs = /** @class */ (function () {
         catch (error) { }
         WmyLoadJs.html["innerText"] = "正在加载启动程序...(?/?)";
         WmyLoadJs.jsUrl = "https://dnvqqk.github.io/webh5/";
-        // if(document.URL.indexOf("file:///")>=0){
-        // 	WmyLoadJs.jsUrl="../";
-        // }
-        // var jsArr:Array<string>=[];
-        // jsArr.push("libs/layaLibs/laya.core.min.js");
-        // WmyLoadJs.loadJs(jsArr,WmyLoadJs.ggJsv,WmyLoadJs.jsUrl,()=>{
-        //     var load=new laya.net.LoaderManager();
-        //     WmyLoadJs.loadInfoV="?"+Date.now();
-        //     load.load("wmyData/loadInfo.txt"+WmyLoadJs.loadInfoV,laya.utils.Handler.create(this,(data)=>{
-        //         try{
-        //             WmyLoadJs.assetUrl=data[0]["assetUrl"];
-        //             if(document.URL.indexOf("file:///")>=0){
-        //                 WmyLoadJs.assetUrl="";
-        //             }
-        //         } catch (error) {}
-        //         try{
-        //             WmyLoadJs.jsV=data[0]["jsV"];
-        //         } catch (error) {}
-        //         WmyLoadJs.mainJs();
-        //     }),null,laya.net.Loader.JSON)
-        // });
+        if (WmyLoadJs.d.URL.indexOf("file:///") >= 0) {
+            WmyLoadJs.jsUrl = "../";
+        }
+        var jsArr = [];
+        jsArr.push("libs/layaLibs/laya.core.min.js");
+        WmyLoadJs.loadJs(jsArr, WmyLoadJs.ggJsv, WmyLoadJs.jsUrl, function () {
+            var load = new laya.net.LoaderManager();
+            WmyLoadJs.loadInfoV = "?" + Date.now();
+            load.load("wmyData/loadInfo.txt" + WmyLoadJs.loadInfoV, laya.utils.Handler.create(_this, function (data) {
+                try {
+                    WmyLoadJs.assetUrl = data[0]["assetUrl"];
+                    if (WmyLoadJs.d.URL.indexOf("file:///") >= 0) {
+                        WmyLoadJs.assetUrl = "";
+                    }
+                }
+                catch (error) { }
+                try {
+                    WmyLoadJs.jsV = data[0]["jsV"];
+                }
+                catch (error) { }
+                WmyLoadJs.mainJs();
+            }), null, laya.net.Loader.JSON);
+        });
     }
     WmyLoadJs.ggJssArr = function () {
         WmyLoadJs._ggJssArr.push("libs/layaLibs/laya.webgl.min.js");
@@ -56,9 +59,7 @@ var WmyLoadJs = /** @class */ (function () {
         WmyLoadJs.jssArr();
         //正在加载启动程序...
         //document
-        var d = document;
-        var html = d["body"]["children"][0];
-        //html["innerText"]="123";
+        WmyLoadJs.html["innerText"] = "正在加载启动程序...(0/0)";
         var jsUrlArr = [];
         WmyLoadJs._ggJssArr.forEach(function (js) {
             jsUrlArr.push(WmyLoadJs.jsUrl + js + WmyLoadJs.ggJsv);
@@ -72,7 +73,7 @@ var WmyLoadJs = /** @class */ (function () {
             var load = new laya.net.LoaderManager();
             load.load(js, laya.utils.Handler.create(_this, function () {
                 num += 1;
-                html["innerText"] = "正在加载启动程序...(" + num + "/" + totalNum + ")";
+                WmyLoadJs.html["innerText"] = "正在加载启动程序...(" + num + "/" + totalNum + ")";
                 if (num == totalNum) {
                     WmyLoadJs.loadJs(WmyLoadJs._ggJssArr, WmyLoadJs.ggJsv, WmyLoadJs.jsUrl, function () {
                         WmyLoadJs.loadJs(WmyLoadJs._jssArr, WmyLoadJs.jsV, WmyLoadJs.assetUrl);
