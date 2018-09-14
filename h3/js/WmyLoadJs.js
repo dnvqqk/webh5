@@ -1,1 +1,123 @@
-var WmyLoadJs=function(){function s(){var r=this;s.jsUrl="https://dnvqqk.github.io/webh5/",document.URL.indexOf("file:///")>=0&&(s.jsUrl="../");var a=[];a.push("libs/layaLibs/laya.core.min.js"),s.loadJs(a,s.ggJsv,s.jsUrl,function(){var a=new laya.net.LoaderManager;s.loadInfoV="?"+Date.now(),a.load("wmyData/loadInfo.txt"+s.loadInfoV,laya.utils.Handler.create(r,function(r){try{s.assetUrl=r[0].assetUrl,document.URL.indexOf("file:///")>=0&&(s.assetUrl="")}catch(s){}try{s.jsV=r[0].jsV}catch(s){}s.mainJs()}),null,laya.net.Loader.JSON)})}return s.ggJssArr=function(){s._ggJssArr.push("libs/layaLibs/laya.webgl.min.js"),s._ggJssArr.push("libs/layaLibs/laya.ani.min.js"),s._ggJssArr.push("libs/layaLibs/laya.d3.min.js"),s._ggJssArr.push("libs/layaLibs/laya.physics3D.js"),s._ggJssArr.push("libs/layaLibs/laya.html.min.js"),s._ggJssArr.push("libs/wmyList/fairygui/fairygui.js"),s._ggJssArr.push("libs/wmyList/greensock/minified/TweenMax.min.js")},s.jssArr=function(){s._jssArr.push("js/wmyUtilsH5/Wmy_Load_Mag.js"),s._jssArr.push("js/wmyUtilsH5/WmyUtils.js"),s._jssArr.push("js/wmyUtilsH5/3d/WmyUtils3D.js"),s._jssArr.push("js/wmyUtilsH5/3d/WmyShaderMsg.js"),s._jssArr.push("js/wmyUtilsH5/3d/WmyLoadMats.js"),s._jssArr.push("js/wmyUtilsH5/3d/WmyLoad3d.js"),s._jssArr.push("js/wmyUtilsH5/3d/WmyPhysicsWorld_Character.js"),s._jssArr.push("js/player/PlayerKz.js"),s._jssArr.push("js/player/UnitAnimator.js"),s._jssArr.push("js/LayaAir3D.js")},s.mainJs=function(){var r=this;s.ggJssArr(),s.jssArr();try{var a=document.body.children[0],i=[];s._ggJssArr.forEach(function(r){i.push(s.jsUrl+r+s.ggJsv)}),s._jssArr.forEach(function(r){i.push(s.assetUrl+r+s.jsV)});var n=i.length,l=0;i.forEach(function(i){(new laya.net.LoaderManager).load(i,laya.utils.Handler.create(r,function(){l+=1,a.innerText="正在加载启动程序...("+l+"/"+n+")",l==n&&s.onLoadJs()}))})}catch(r){s.onLoadJs()}},s.onLoadJs=function(){s.loadJs(s._ggJssArr,s.ggJsv,s.jsUrl,function(){s.loadJs(s._jssArr,s.jsV,s.assetUrl)})},s.loadJs=function(r,a,i,n){void 0===a&&(a=""),void 0===i&&(i="");var l=[];r.forEach(function(r){s._jsArr.indexOf(r)<0&&(s._jsArr.push(r),l.push(i+r+a))}),l.length>0&&require(l,n)},s.ggJsv="?0.2",s.loadInfoV="",s.assetUrl="",s.jsV="",s.jsUrl="",s._ggJssArr=[],s._jssArr=[],s._jsArr=[],s}();new WmyLoadJs;
+var WmyLoadJs = /** @class */ (function () {
+    function WmyLoadJs() {
+        try {
+            WmyLoadJs.d = document;
+            WmyLoadJs.html = WmyLoadJs.d["body"]["children"][0];
+        }
+        catch (error) { }
+        WmyLoadJs.html["innerText"] = "正在加载启动程序...(?/?)";
+        WmyLoadJs.jsUrl = "https://dnvqqk.github.io/webh5/";
+        // if(document.URL.indexOf("file:///")>=0){
+        // 	WmyLoadJs.jsUrl="../";
+        // }
+        // var jsArr:Array<string>=[];
+        // jsArr.push("libs/layaLibs/laya.core.min.js");
+        // WmyLoadJs.loadJs(jsArr,WmyLoadJs.ggJsv,WmyLoadJs.jsUrl,()=>{
+        //     var load=new laya.net.LoaderManager();
+        //     WmyLoadJs.loadInfoV="?"+Date.now();
+        //     load.load("wmyData/loadInfo.txt"+WmyLoadJs.loadInfoV,laya.utils.Handler.create(this,(data)=>{
+        //         try{
+        //             WmyLoadJs.assetUrl=data[0]["assetUrl"];
+        //             if(document.URL.indexOf("file:///")>=0){
+        //                 WmyLoadJs.assetUrl="";
+        //             }
+        //         } catch (error) {}
+        //         try{
+        //             WmyLoadJs.jsV=data[0]["jsV"];
+        //         } catch (error) {}
+        //         WmyLoadJs.mainJs();
+        //     }),null,laya.net.Loader.JSON)
+        // });
+    }
+    WmyLoadJs.ggJssArr = function () {
+        WmyLoadJs._ggJssArr.push("libs/layaLibs/laya.webgl.min.js");
+        WmyLoadJs._ggJssArr.push("libs/layaLibs/laya.ani.min.js");
+        WmyLoadJs._ggJssArr.push("libs/layaLibs/laya.d3.min.js");
+        WmyLoadJs._ggJssArr.push("libs/layaLibs/laya.physics3D.js");
+        WmyLoadJs._ggJssArr.push("libs/layaLibs/laya.html.min.js");
+        WmyLoadJs._ggJssArr.push("libs/wmyList/fairygui/fairygui.js");
+        WmyLoadJs._ggJssArr.push("libs/wmyList/greensock/minified/TweenMax.min.js");
+    };
+    WmyLoadJs.jssArr = function () {
+        WmyLoadJs._jssArr.push("js/wmyUtilsH5/Wmy_Load_Mag.js");
+        WmyLoadJs._jssArr.push("js/wmyUtilsH5/WmyUtils.js");
+        WmyLoadJs._jssArr.push("js/wmyUtilsH5/3d/WmyUtils3D.js");
+        WmyLoadJs._jssArr.push("js/wmyUtilsH5/3d/WmyShaderMsg.js");
+        WmyLoadJs._jssArr.push("js/wmyUtilsH5/3d/WmyLoadMats.js");
+        WmyLoadJs._jssArr.push("js/wmyUtilsH5/3d/WmyLoad3d.js");
+        WmyLoadJs._jssArr.push("js/wmyUtilsH5/3d/WmyPhysicsWorld_Character.js");
+        WmyLoadJs._jssArr.push("js/player/PlayerKz.js");
+        WmyLoadJs._jssArr.push("js/player/UnitAnimator.js");
+        WmyLoadJs._jssArr.push("js/LayaAir3D.js");
+    };
+    WmyLoadJs.mainJs = function () {
+        var _this = this;
+        WmyLoadJs.ggJssArr();
+        WmyLoadJs.jssArr();
+        //正在加载启动程序...
+        //document
+        var d = document;
+        var html = d["body"]["children"][0];
+        //html["innerText"]="123";
+        var jsUrlArr = [];
+        WmyLoadJs._ggJssArr.forEach(function (js) {
+            jsUrlArr.push(WmyLoadJs.jsUrl + js + WmyLoadJs.ggJsv);
+        });
+        WmyLoadJs._jssArr.forEach(function (js) {
+            jsUrlArr.push(WmyLoadJs.assetUrl + js + WmyLoadJs.jsV);
+        });
+        var totalNum = jsUrlArr.length;
+        var num = 0;
+        jsUrlArr.forEach(function (js) {
+            var load = new laya.net.LoaderManager();
+            load.load(js, laya.utils.Handler.create(_this, function () {
+                num += 1;
+                html["innerText"] = "正在加载启动程序...(" + num + "/" + totalNum + ")";
+                if (num == totalNum) {
+                    WmyLoadJs.loadJs(WmyLoadJs._ggJssArr, WmyLoadJs.ggJsv, WmyLoadJs.jsUrl, function () {
+                        WmyLoadJs.loadJs(WmyLoadJs._jssArr, WmyLoadJs.jsV, WmyLoadJs.assetUrl);
+                    });
+                }
+            }), null, laya.net.Loader.TEXT);
+        });
+    };
+    WmyLoadJs.loadJs = function (jsArr, v, jsUrl, fun) {
+        if (v === void 0) { v = ""; }
+        if (jsUrl === void 0) { jsUrl = ""; }
+        var jsArr1 = [];
+        jsArr.forEach(function (js) {
+            if (WmyLoadJs._jsArr.indexOf(js) < 0) {
+                WmyLoadJs._jsArr.push(js);
+                jsArr1.push(jsUrl + js + v);
+            }
+        });
+        if (jsArr1.length > 0) {
+            require(jsArr1, fun);
+        }
+    };
+    WmyLoadJs.ggJsv = "?0.2";
+    WmyLoadJs.loadInfoV = "";
+    WmyLoadJs.assetUrl = "";
+    WmyLoadJs.jsV = "";
+    WmyLoadJs.jsUrl = "";
+    WmyLoadJs._ggJssArr = [];
+    WmyLoadJs._jssArr = [];
+    // private static importJs(jsArr:Array<string>, v="",jsUrl=""){
+    //     jsArr.forEach(js => {
+    //         WmyLoadJs.writeJs(js,v,jsUrl);
+    //     });
+    // }
+    // private static writeJs(url, v="",jsUrl=""){
+    //     document.write('<script src="'+jsUrl+url+v+'"></script>');
+    // }
+    // public static writeJs(url, v="",jsUrl=""){
+    //     var script = document.createElement("script");
+    //     script.async = false;
+    //     script.src = jsUrl+url+v;
+    //     document.body.appendChild(script);
+    // }
+    WmyLoadJs._jsArr = [];
+    return WmyLoadJs;
+}());
+new WmyLoadJs();
+//# sourceMappingURL=WmyLoadJs.js.map
