@@ -54,7 +54,6 @@ var WmyLoadJs = /** @class */ (function () {
         WmyLoadJs._jssArr.push("js/LayaAir3D.js");
     };
     WmyLoadJs.mainJs = function () {
-        var _this = this;
         WmyLoadJs.ggJssArr();
         WmyLoadJs.jssArr();
         //正在加载启动程序...
@@ -71,11 +70,8 @@ var WmyLoadJs = /** @class */ (function () {
         WmyLoadJs.html["innerText"] = "正在加载启动程序...(" + num + "/" + totalNum + ")";
         for (var i = 0; i < jsUrlArr.length; i++) {
             var url = jsUrlArr[i] + "";
-            WmyLoadJs.html["innerText"] = url;
-        }
-        jsUrlArr.forEach(function (js) {
             var load = new laya.net.LoaderManager();
-            load.load(js, laya.utils.Handler.create(_this, function () {
+            load.load(url, laya.utils.Handler.create(this, function () {
                 num += 1;
                 WmyLoadJs.html["innerText"] = "正在加载启动程序...(" + num + "/" + totalNum + ")";
                 if (num == totalNum) {
@@ -84,7 +80,7 @@ var WmyLoadJs = /** @class */ (function () {
                     });
                 }
             }), null, laya.net.Loader.TEXT);
-        });
+        }
     };
     WmyLoadJs.loadJs = function (jsArr, v, jsUrl, fun) {
         if (v === void 0) { v = ""; }
