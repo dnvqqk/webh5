@@ -70,16 +70,17 @@ var WmyLoadJs = /** @class */ (function () {
         WmyLoadJs.html["innerText"] = "正在加载启动程序...(" + num + "/" + totalNum + ")";
         for (var i = 0; i < jsUrlArr.length; i++) {
             var url = jsUrlArr[i] + "";
-            var load = new laya.net.LoaderManager();
-            load.load(url, laya.utils.Handler.create(this, function () {
-                num += 1;
-                WmyLoadJs.html["innerText"] = "正在加载启动程序...(" + num + "/" + totalNum + ")";
-                if (num == totalNum) {
-                    WmyLoadJs.loadJs(WmyLoadJs._ggJssArr, WmyLoadJs.ggJsv, WmyLoadJs.jsUrl, function () {
-                        WmyLoadJs.loadJs(WmyLoadJs._jssArr, WmyLoadJs.jsV, WmyLoadJs.assetUrl);
-                    });
-                }
-            }), null, laya.net.Loader.TEXT);
+            WmyLoadJs.html["innerText"] = "正在加载启动程序...(" + num + "/" + totalNum + ")";
+            // var load=new laya.net.LoaderManager();
+            // load.load(url,laya.utils.Handler.create(this,()=>{
+            //     num+=1;
+            //     WmyLoadJs.html["innerText"]="正在加载启动程序...("+num+"/"+totalNum+")";
+            //     if(num==totalNum){
+            //         WmyLoadJs.loadJs(WmyLoadJs._ggJssArr,WmyLoadJs.ggJsv,WmyLoadJs.jsUrl,()=>{
+            //             WmyLoadJs.loadJs(WmyLoadJs._jssArr,WmyLoadJs.jsV,WmyLoadJs.assetUrl);
+            //         });
+            //     }
+            // }),null,laya.net.Loader.TEXT);
         }
     };
     WmyLoadJs.loadJs = function (jsArr, v, jsUrl, fun) {
