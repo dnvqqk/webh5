@@ -27,15 +27,15 @@
 					"name":"Camera",
 					"layer":0,
 					"position":[
-						-10.04,
-						2.549354,
+						-10,
+						2.5,
 						10
 					],
 					"rotation":[
-						-0.03497858,
-						0,
-						0,
-						0.9993881
+						-0.03489949,
+						-1.871394E-07,
+						-6.535052E-09,
+						0.9993908
 					],
 					"scale":[
 						1,
@@ -118,7 +118,7 @@
 								"props":{
 									"isStatic":false,
 									"name":"Asphalt",
-									"layer":11,
+									"layer":0,
 									"position":[
 										-9.15,
 										0,
@@ -126,16 +126,16 @@
 									],
 									"rotation":[
 										0,
-										0.7071068,
-										-0.7071068,
-										0
+										0,
+										0,
+										-1
 									],
 									"scale":[
 										20.00019,
-										6.578827,
-										1
+										0,
+										6.578827
 									],
-									"meshPath":"Library/unity default resources-Quad.lm",
+									"meshPath":"Library/unity default resources-Cube.lm",
 									"materials":[
 										{
 											"type":"Laya.BlinnPhongMaterial",
@@ -150,8 +150,8 @@
 								"type":"MeshSprite3D",
 								"props":{
 									"isStatic":false,
-									"name":"Asphalt",
-									"layer":11,
+									"name":"Asphalt (1)",
+									"layer":0,
 									"position":[
 										12.396,
 										0,
@@ -159,16 +159,16 @@
 									],
 									"rotation":[
 										0,
-										0.7071068,
-										-0.7071068,
-										0
+										0,
+										0,
+										-1
 									],
 									"scale":[
 										23.09221,
-										6.581603,
-										1
+										0,
+										6.581603
 									],
-									"meshPath":"Library/unity default resources-Quad.lm",
+									"meshPath":"Library/unity default resources-Cube.lm",
 									"materials":[
 										{
 											"type":"Laya.BlinnPhongMaterial",
@@ -5574,7 +5574,7 @@
 							"name":"Collider3 (1)",
 							"layer":11,
 							"position":[
-								20.2,
+								19,
 								4.146,
 								-1.56
 							],
@@ -9613,7 +9613,7 @@
 					"name":"Player1",
 					"layer":9,
 					"position":[
-						-9.99,
+						-10,
 						0,
 						-1
 					],
@@ -9739,6 +9739,10 @@
 													{
 														"name":"Punch3",
 														"clipPath":"Assets/wmyObj/player/Player1/Char1@PunchCombo-Punch3.lani"
+													},
+													{
+														"name":"JumpKick",
+														"clipPath":"Assets/wmyObj/player/Player1/Char1@JumpKick-JumpKick.lani"
 													}
 												]
 											}
@@ -9755,9 +9759,9 @@
 											"name":"Char",
 											"layer":0,
 											"position":[
-												-1.19212E-09,
 												0,
-												-1.180172E-07
+												0,
+												-1.192093E-07
 											],
 											"rotation":[
 												-2.185569E-08,
@@ -10040,9 +10044,9 @@
 					"name":"WmyU3dToLaya",
 					"layer":0,
 					"position":[
-						-12.25,
-						6.98,
-						-3.36
+						0,
+						0,
+						0
 					],
 					"rotation":[
 						0,
