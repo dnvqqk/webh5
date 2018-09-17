@@ -9967,6 +9967,14 @@ var CollisionTool=(function(){
 			if (subCollisionSecond)
 				collision=subCollisionSecond[idA];
 		}
+		else{
+			if(collision["_colliderA"]!=physicComponentA){
+				collision["_colliderA"]=physicComponentA;
+			}
+			if(collision["_colliderB"]!=physicComponentB){
+				collision["_colliderB"]=physicComponentB;
+			}
+		}
 		if (!collision){
 			if (!subCollisionFirst){
 				subCollisionFirst={};
@@ -10678,7 +10686,9 @@ var PhysicsSimulation=(function(){
 			var collision=null;
 			var contacts=null;
 			var isTrigger=componentA.isTrigger || componentB.isTrigger;
-			if (isTrigger && ((componentA.owner)._needProcessTriggers || (componentB.owner)._needProcessTriggers)){
+			//wmy
+			//if (isTrigger && ((componentA.owner)._needProcessTriggers || (componentB.owner)._needProcessTriggers)){
+			if (isTrigger && ((componentA.owner).activeInHierarchy && (componentB.owner).activeInHierarchy)){
 				var numContacts=contactManifold.getNumContacts();
 				for (var j=0;j < numContacts;j++){
 					var pt=contactManifold.getContactPoint(j);
@@ -10744,34 +10754,48 @@ var PhysicsSimulation=(function(){
 			var curFrameCol=this._currentFrameCollisions[i];
 			if (loopCount-curFrameCol._lastUpdateFrame===1){
 				var ownerA=curFrameCol._colliderA.owner;
-				var scriptsA=ownerA._scripts;
+				var scriptsA=ownerA._components;
 				if (scriptsA){
 					if (curFrameCol._isTrigger){
-						if (ownerA._needProcessTriggers){
-							for (var j=0,m=scriptsA.length;j < m;j++)
-							scriptsA[j].onTriggerStay(curFrameCol._colliderB);
+						if (ownerA){
+							for (var j=0,m=scriptsA.length;j < m;j++){
+								if(!(scriptsA[j].onTriggerStay)){
+									continue;
+								}
+								scriptsA[j].onTriggerStay(curFrameCol._colliderB);
+							}
 						}
 						}else {
-						if (ownerA._needProcessCollisions){
+						if (ownerA){
 							for (j=0,m=scriptsA.length;j < m;j++){
 								curFrameCol.other=curFrameCol._colliderB;
+								if(!(scriptsA[j].onCollisionStay)){
+									continue;
+								}
 								scriptsA[j].onCollisionStay(curFrameCol);
 							}
 						}
 					}
 				};
 				var ownerB=curFrameCol._colliderB.owner;
-				var scriptsB=ownerB._scripts;
+				var scriptsB=ownerB._components;
 				if (scriptsB){
 					if (curFrameCol._isTrigger){
-						if (ownerB._needProcessTriggers){
-							for (j=0,m=scriptsB.length;j < m;j++)
-							scriptsB[j].onTriggerStay(curFrameCol._colliderA);
+						if (ownerB){
+							for (j=0,m=scriptsB.length;j < m;j++){
+								if(!(scriptsB[j].onTriggerStay)){
+									continue;
+								}
+								scriptsB[j].onTriggerStay(curFrameCol._colliderA);
+							}
 						}
 						}else {
-						if (ownerB._needProcessCollisions){
+						if (ownerB){
 							for (j=0,m=scriptsB.length;j < m;j++){
 								curFrameCol.other=curFrameCol._colliderA;
+								if(!(scriptsB[j].onCollisionStay)){
+									continue;
+								}
 								scriptsB[j].onCollisionStay(curFrameCol);
 							}
 						}
@@ -10779,34 +10803,48 @@ var PhysicsSimulation=(function(){
 				}
 				}else {
 				ownerA=curFrameCol._colliderA.owner;
-				scriptsA=ownerA._scripts;
+				scriptsA=ownerA._components;
 				if (scriptsA){
 					if (curFrameCol._isTrigger){
-						if (ownerA._needProcessTriggers){
-							for (j=0,m=scriptsA.length;j < m;j++)
-							scriptsA[j].onTriggerEnter(curFrameCol._colliderB);
+						if (ownerA){
+							for (j=0,m=scriptsA.length;j < m;j++){
+								if(!(scriptsA[j].onTriggerEnter)){
+									continue;
+								}
+								scriptsA[j].onTriggerEnter(curFrameCol._colliderB);
+							}
 						}
 						}else {
-						if (ownerA._needProcessCollisions){
+						if (ownerA){
 							for (j=0,m=scriptsA.length;j < m;j++){
 								curFrameCol.other=curFrameCol._colliderB;
+								if(!(scriptsA[j].onCollisionEnter)){
+									continue;
+								}
 								scriptsA[j].onCollisionEnter(curFrameCol);
 							}
 						}
 					}
 				}
 				ownerB=curFrameCol._colliderB.owner;
-				scriptsB=ownerB._scripts;
+				scriptsB=ownerB._components;
 				if (scriptsB){
 					if (curFrameCol._isTrigger){
-						if (ownerB._needProcessTriggers){
-							for (j=0,m=scriptsB.length;j < m;j++)
-							scriptsB[j].onTriggerEnter(curFrameCol._colliderA);
+						if (ownerB){
+							for (j=0,m=scriptsB.length;j < m;j++){
+								if(!(scriptsB[j].onTriggerEnter)){
+									continue;
+								}
+								scriptsB[j].onTriggerEnter(curFrameCol._colliderA);
+							}
 						}
 						}else {
-						if (ownerB._needProcessCollisions){
+						if (ownerB){
 							for (j=0,m=scriptsB.length;j < m;j++){
 								curFrameCol.other=curFrameCol._colliderA;
+								if(!(scriptsB[j].onCollisionEnter)){
+									continue;
+								}
 								scriptsB[j].onCollisionEnter(curFrameCol);
 							}
 						}
@@ -10819,34 +10857,48 @@ var PhysicsSimulation=(function(){
 			if (loopCount-preFrameCol._updateFrame===1){
 				this._collisionsUtils.recoverCollision(preFrameCol);
 				ownerA=preFrameCol._colliderA.owner;
-				scriptsA=ownerA._scripts;
+				scriptsA=ownerA._components;
 				if (scriptsA){
 					if (preFrameCol._isTrigger){
-						if (ownerA._needProcessTriggers){
-							for (j=0,m=scriptsA.length;j < m;j++)
-							scriptsA[j].onTriggerExit(preFrameCol._colliderB);
+						if (ownerA){
+							for (j=0,m=scriptsA.length;j < m;j++){
+								if(!(scriptsA[j].onTriggerExit)){
+									continue;
+								}
+								scriptsA[j].onTriggerExit(preFrameCol._colliderB);
+							}
 						}
 						}else {
-						if (ownerA._needProcessCollisions){
+						if (ownerA){
 							for (j=0,m=scriptsA.length;j < m;j++){
 								preFrameCol.other=preFrameCol._colliderB;
+								if(!(scriptsA[j].onCollisionExit)){
+									continue;
+								}
 								scriptsA[j].onCollisionExit(preFrameCol);
 							}
 						}
 					}
 				}
 				ownerB=preFrameCol._colliderB.owner;
-				scriptsB=ownerB._scripts;
+				scriptsB=ownerB._components;
 				if (scriptsB){
 					if (preFrameCol._isTrigger){
-						if (ownerB._needProcessTriggers){
-							for (j=0,m=scriptsB.length;j < m;j++)
-							scriptsB[j].onTriggerExit(preFrameCol._colliderA);
+						if (ownerB){
+							for (j=0,m=scriptsB.length;j < m;j++){
+								if(!(scriptsB[j].onTriggerExit)){
+									continue;
+								}
+								scriptsB[j].onTriggerExit(preFrameCol._colliderA);
+							}
 						}
 						}else {
-						if (ownerB._needProcessCollisions){
+						if (ownerB){
 							for (j=0,m=scriptsB.length;j < m;j++){
 								preFrameCol.other=preFrameCol._colliderA;
+								if(!(scriptsB[j].onCollisionExit)){
+									continue;
+								}
 								scriptsB[j].onCollisionExit(preFrameCol);
 							}
 						}
