@@ -1,0 +1,1 @@
+var __extends=this&&this.__extends||function(t,n){function o(){this.constructor=t}for(var e in n)n.hasOwnProperty(e)&&(t[e]=n[e]);t.prototype=null===n?Object.create(n):(o.prototype=n.prototype,new o)},EnemyKz=function(t){function n(){t.apply(this,arguments)}return __extends(n,t),n.prototype.onInit=function(){this.onTweenMaxRotation(-1)},n}(BaseRoleKz);
