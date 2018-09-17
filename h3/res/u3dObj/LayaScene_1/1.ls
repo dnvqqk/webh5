@@ -5,9 +5,9 @@
 		"props":{
 			"name":"1",
 			"ambientColor":[
-				0.5,
-				0.5,
-				0.5
+				0.1,
+				0.1,
+				0.1
 			],
 			"lightmaps":[],
 			"enableFog":true,
@@ -9926,32 +9926,6 @@
 								"child":[]
 							}
 						]
-					},
-					{
-						"type":"Sprite3D",
-						"props":{
-							"isStatic":false,
-							"name":"hitEffectPos",
-							"layer":8,
-							"position":[
-								0,
-								1.6,
-								0
-							],
-							"rotation":[
-								0,
-								0,
-								0,
-								-1
-							],
-							"scale":[
-								1,
-								1,
-								1
-							]
-						},
-						"components":[],
-						"child":[]
 					}
 				]
 			},
@@ -10064,6 +10038,14 @@
 													{
 														"name":"Enemy_Idle",
 														"clipPath":"Assets/wmyObj/player/Enemy/Enemy1@Idle-Enemy1_Idle.lani"
+													},
+													{
+														"name":"Enemy1_Hit1",
+														"clipPath":"Assets/wmyObj/player/Enemy/Enemy1_Hit1-Enemy1_Hit1.lani"
+													},
+													{
+														"name":"Enemy1_Hit2",
+														"clipPath":"Assets/wmyObj/player/Enemy/Enemy1_Hit2-Enemy1_Hit2.lani"
 													}
 												]
 											}
@@ -10220,32 +10202,6 @@
 								"child":[]
 							}
 						]
-					},
-					{
-						"type":"Sprite3D",
-						"props":{
-							"isStatic":false,
-							"name":"hitEffectPos",
-							"layer":8,
-							"position":[
-								0,
-								1.6,
-								0
-							],
-							"rotation":[
-								0,
-								0,
-								0,
-								-1
-							],
-							"scale":[
-								1,
-								1,
-								1
-							]
-						},
-						"components":[],
-						"child":[]
 					}
 				]
 			},
@@ -10442,7 +10398,7 @@
 											"playOnAwake":true,
 											"maxParticles":1000,
 											"autoRandomSeed":true,
-											"randomSeed":1199771770,
+											"randomSeed":0,
 											"emission":{
 												"enable":true,
 												"emissionRate":0,
@@ -10662,7 +10618,7 @@
 											"playOnAwake":true,
 											"maxParticles":1000,
 											"autoRandomSeed":true,
-											"randomSeed":3068178034,
+											"randomSeed":0,
 											"emission":{
 												"enable":true,
 												"emissionRate":0,
