@@ -1,1 +1,1 @@
-declare function require(a,b?);
+declare function require(a,b?,c?);
