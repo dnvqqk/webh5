@@ -1,5 +1,5 @@
 [
-    {"assetUrl":"https://dnvqqk.github.io/webh5/h3/", "V":"?9_18_053"},
+    {"assetUrl":"https://dnvqqk.github.io/webh5/h3/", "V":"?9_18_2137"},
 
     {"resName":"load",
     "type":"",
@@ -29,6 +29,15 @@
     "type":"u3d",
     "Resres":[
     {"resUrl":"res/u3dObj/LayaScene_1/1.ls"}
+    ]},
+
+    {"resName":"audio",
+    "type":"audio",
+    "Resres":[
+    {"resUrl":"res/fui/audio.txt"},
+    {"resUrl":"res/fui/audio_kk8m0.wav"},
+    {"resUrl":"res/fui/audio_kk8m4.wav"},
+    {"resUrl":"res/fui/audio_kk8m5.wav"}
     ]}
     
     
