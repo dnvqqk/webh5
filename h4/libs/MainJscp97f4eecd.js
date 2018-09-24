@@ -1,0 +1,1 @@
+var MainJs=function(){function n(){var n=new laya.net.Loader;n.load("version.json?"+Date.now(),"json"),n.on("complete",this,this.loadOk)}return n.prototype.loadOk=function(n){var o="js/bundle.js";null!=n[o]&&(o=n[o]),loadLib(o)},n}();new MainJs;
