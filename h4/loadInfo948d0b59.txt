@@ -26,7 +26,7 @@
     {"resName":"u3dObj",
     "type":"u3d",
     "Resres":[
-    {"resUrl":"res/u3dObj/LayaScene_1/1.ls"}
+    {"resUrl":"res/u3dObj/LayaScene_1/2.ls"}
     ]},
 
     {"resName":"audio",
