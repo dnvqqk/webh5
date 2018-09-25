@@ -27,7 +27,7 @@
         "info":"自定义材质文件",
         "type":"mats",
         "Resres":[
-        {"resUrl":"res/mats/wmyMats.txt?1"}
+        {"resUrl":"res/mats/wmyMats.json"}
         ]},
 
     {"resName":"audio",
