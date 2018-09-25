@@ -21,6 +21,12 @@
     {"resUrl":"res/fui/audio_kk8m0.wav"},
     {"resUrl":"res/fui/audio_kk8m4.wav"},
     {"resUrl":"res/fui/audio_kk8m5.wav"}
+    ]},
+    
+    {"resName":"u3dObj",
+    "type":"u3d",
+    "Resres":[
+    {"resUrl":"res/u3dObj/LayaScene_1/Conventional/1.ls"}
     ]}
 
 ]
