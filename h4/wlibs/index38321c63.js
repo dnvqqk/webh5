@@ -187,7 +187,7 @@ var MainJs = /** @class */ (function () {
 		loadLib(MainJs.getUrl("wlibs/require.min.js"));
         setTimeout(function () {
             _this.onMain();
-        }, 200);
+        }, 1200);
     };
 	//wmy
     MainJs.JssArr = function () {
