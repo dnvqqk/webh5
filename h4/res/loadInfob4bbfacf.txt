@@ -4,6 +4,7 @@
     {"resName":"load",
     "type":"",
     "Resres":[
-    {"resUrl":"res/fui/load.txt"}
+    {"resUrl":"res/fui/load.txt"},
+    {"resUrl":"res/fui/load_atlas0.png"}
     ]}
 ]
