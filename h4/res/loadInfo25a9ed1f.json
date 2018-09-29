@@ -29,6 +29,12 @@
         {"resUrl":"res/mats/wmyMats.json"}
         ]},
 
+    {"resName":"u3dObj",
+        "type":"u3d",
+        "Resres":[
+        {"resUrl":"res/u3dObj/LayaScene_1/1.ls"}
+        ]},
+
     {"resName":"audio",
         "info":"声音文件",
         "type":"audio",
@@ -37,12 +43,6 @@
         {"resUrl":"res/fui/audio_kk8m0.wav"},
         {"resUrl":"res/fui/audio_kk8m4.wav"},
         {"resUrl":"res/fui/audio_kk8m5.wav"}
-        ]},
-    
-    {"resName":"u3dObj",
-        "type":"u3d",
-        "Resres":[
-        {"resUrl":"res/u3dObj/LayaScene_1/1.ls"}
         ]}
-
+    
 ]
