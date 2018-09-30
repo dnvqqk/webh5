@@ -10003,7 +10003,7 @@
 									{
 										"type":"Animator",
 										"avatar":{
-											"path":"Assets/wmyObj/player/Player1/PlayerRig 1-GFX-PlayerRig 1Avatar.lav",
+											"path":"Assets/wmyObj/player/Player1/PlayerRig_Avatar-GFX-PlayerRig_Avatar.lav",
 											"linkSprites":{}
 										},
 										"layers":[
