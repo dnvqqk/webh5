@@ -3,7 +3,8 @@
     "info":"加载启动文件",
     "type":"",
     "Resres":[
-    {"resUrl":"res/fui/load.txt"}
+    {"resUrl":"res/fui/load.txt"},
+    {"resUrl":"res/fui/load_atlas0.png"}
     ]},
     
     {"resName":"main",
