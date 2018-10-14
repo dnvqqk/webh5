@@ -1,30 +1,43 @@
-﻿<!DOCTYPE html>
+<html>
+
 <head>
-    <meta charset='utf-8'/>
-    <title></title>
-    <meta name='apple-mobile-web-app-capable' content='yes' />
-    <meta name='full-screen' content='true' />
-    <meta name='screen-orientation' content='portrait' />
-    <meta name='x5-fullscreen' content='true' />
-    <meta name='360-fullscreen' content='true' />
-    <meta http-equiv='expires' content='0' />
-    <meta name="viewport" content="width=device-width,initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no"/>
-	<style type="text/css">
-	.STYLE1 {
-		color: #FFFFFF;
-		font-size: 18px;
-		position: fixed;
-		top: 50%;
-		left: 0%;
-		background-color: #000;
-		width:100%;
-		height: 100%;
-	}
-    </style>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no"
+    />
+    <title>AR</title>
 </head>
-<body style='margin:0;overflow:none;overflow-x:hidden;overflow-y:hidden;background-color: #000;'>
-	
-	<!--jsfile--Main-->
+
+<body>
+    <script type="text/javascript" src="//res.imtt.qq.com/common/zepto.min.js"></script>
+    <script type="text/javascript" src="//res.imtt.qq.com/webar/third_party/LayaAirJS_1.7.12/laya.core.min.js"></script>
+    <script type="text/javascript" src="//res.imtt.qq.com/webar/third_party/LayaAirJS_1.7.12/laya.webgl.min.js"></script>
+    <script type="text/javascript" src="//res.imtt.qq.com/webar/third_party/LayaAirJS_1.7.12/laya.ani.min.js"></script>
+    <script type="text/javascript" src="//res.imtt.qq.com/webar/third_party/LayaAirJS_1.7.12/laya.d3.min.js"></script>
+    <script type="text/javascript" src="./js/layaEngine.js"></script>
+    <script type="text/javascript" src="./js/tar.js"></script>
+    <script type="text/javascript" src="./js/task.js"></script>
+    <script>
+        function createScript(src) {
+            const promise = new Promise((resolve) => {
+                const script = document.createElement('script');
+                script.type = 'text/javascript';
+                script.src = src;
+                script.async = false;
+                script.onload = () => resolve();
+                $('body').append(script);
+            });
+            return promise;
+        }
+        const IS_IOS_PLAT = !!navigator.userAgent.match(/\(i[^;]+;( U;)? CPU.+Mac OS X/);
+        if (IS_IOS_PLAT) {
+            // WebARonARKit.js是将iOS下ARKit与Android做兼容，并将能力向QB的Android AR看齐
+            createScript('//res.imtt.qq.com/webar/third_party/WebARonARKit.js').then(() => {
+                createScript('./js/main.js');
+            });
+        } else {
+            createScript('./js/main.js');
+        }
+    </script>
 </body>
 
 </html>
