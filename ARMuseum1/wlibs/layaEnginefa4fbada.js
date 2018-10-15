@@ -269,7 +269,7 @@ var LayaEngine = function () {
             LayaEngine.init();
         }
 
-        this.scene = new Laya.Scene();
+        this.scene = new Laya.Scene3D();
         this.camera = new Laya.Camera(0, 0.1, 10000);
         this.scene.addChild(this.camera);
 
