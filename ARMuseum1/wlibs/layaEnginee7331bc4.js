@@ -608,8 +608,6 @@ var ARVideoRenderer = function () {
     (0, _createClass3.default)(ARVideoRenderer, [{
         key: 'render',
         value: function render() {
-            
-		    Laya.stage.event("tar_render",this.texture);
             this.gl.useProgram(this.program);
             this.gl.bindBuffer(this.gl.ARRAY_BUFFER, this.vertexPositionBuffer);
             this.gl.enableVertexAttribArray(this.vertexPositionAttribute);
