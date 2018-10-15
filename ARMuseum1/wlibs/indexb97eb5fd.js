@@ -202,7 +202,7 @@ var MainJs = /** @class */ (function () {
         jsUrlArr.push("libs/laya.html.js");
         //
         jsUrlArr.push("wlibs/fairygui.js");
-        jsUrlArr.push("wlibs/layaEngine.js");
+        jsUrlArr.push("wlibs/layaEngine2.js");
         jsUrlArr.push("wlibs/tar.js");
 		//
         jsUrlArr.push("js/bundle.js");
