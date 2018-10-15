@@ -338,7 +338,29 @@ var LayaEngine = function () {
         key: 'init',
         value: function init() {
             if(!Laya._isinit){
-                Laya3D.init(0, 0);
+                var Config3D={
+                /**@private */
+                "defaultPhysicsMemory":16,
+                /**@private */
+                "_editerEnvironment":false,
+                /**
+                *是否开启抗锯齿。
+                */
+                "isAntialias":true,
+                /**
+                *设置画布是否透明。
+                */
+                "isAlpha":true,
+                /**
+                *设置画布是否预乘。
+                */
+                "premultipliedAlpha":true,
+                /**
+                *设置画布的是否开启模板缓冲。
+                */
+                "isStencil":true,
+                }
+                Laya3D.init(0, 0,Config3D);
                 Laya.stage.scaleMode = Laya.Stage.SCALE_FULL;
                 Laya.stage.screenMode = Laya.Stage.SCREEN_NONE;
                 Laya.stage.bgColor = 'none';
