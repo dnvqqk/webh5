@@ -303,11 +303,11 @@ var LayaEngine = function () {
                         Laya.WebGLContext.setCullFace(Laya.WebGL.mainContext, false);
                         self.arView.render();
                         Laya.WebGL.mainContext.useProgram(Laya.WebGLContext._useProgram);
-                        if (Laya.Buffer._bindActive[Laya.WebGL.mainContext.ARRAY_BUFFER]) {
-                            Laya.WebGL.mainContext.bindBuffer(Laya.WebGL.mainContext.ARRAY_BUFFER, Laya.Buffer._bindActive[Laya.WebGL.mainContext.ARRAY_BUFFER]);
+                        if (Laya.Buffer._bindActive[Laya.WebGLContext.ARRAY_BUFFER]) {
+                            Laya.WebGL.mainContext.bindBuffer(Laya.WebGLContext.ARRAY_BUFFER, Laya.Buffer._bindActive[Laya.WebGLContext.ARRAY_BUFFER]);
                         }
-                        if (Laya.Buffer._bindActive[Laya.WebGL.mainContext.ELEMENT_ARRAY_BUFFER]) {
-                            Laya.WebGL.mainContext.bindBuffer(Laya.WebGL.mainContext.ELEMENT_ARRAY_BUFFER, Laya.Buffer._bindActive[Laya.WebGL.mainContext.ELEMENT_ARRAY_BUFFER]);
+                        if (Laya.Buffer._bindActive[Laya.WebGLContext.ELEMENT_ARRAY_BUFFER]) {
+                            Laya.WebGL.mainContext.bindBuffer(Laya.WebGLContext.ELEMENT_ARRAY_BUFFER, Laya.Buffer._bindActive[Laya.WebGLContext.ELEMENT_ARRAY_BUFFER]);
                         }
                     }
                     this.scene.oldRenderScene(p0, p1);
