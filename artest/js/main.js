@@ -4,44 +4,44 @@ const ar = new TAR.AR();
 const engine = new TAR.Engine();
 
 
-/**
- * Android通过主循环监控平面坐标的变化，需要主动调用onTarStateChanged去改变状态
- * iOS已经将事件监听写在了tar.js里面，状态自动切换
- */
-if (TAR.ENV.ANDROID) {
-    render.on('TAR_STATE_CHANGE', () => {
-        const vrDisplay = ar.getVRDisplay();
-        if (vrDisplay && ar.isEngineDownload()) {
-            const frameData = new VRFrameData();
-            vrDisplay.getFrameData(frameData);
-            const [x, y, z] = frameData.pose.position;
-            if (x === 0 &&  y === 0 && z === 0) {
-                ar.onTarStateChanged('limited');
-            } else {
-                ar.onTarStateChanged('normal');
-            }
-        }
-    });
-}
+// /**
+//  * Android通过主循环监控平面坐标的变化，需要主动调用onTarStateChanged去改变状态
+//  * iOS已经将事件监听写在了tar.js里面，状态自动切换
+//  */
+// if (TAR.ENV.ANDROID) {
+//     render.on('TAR_STATE_CHANGE', () => {
+//         const vrDisplay = ar.getVRDisplay();
+//         if (vrDisplay && ar.isEngineDownload()) {
+//             const frameData = new VRFrameData();
+//             vrDisplay.getFrameData(frameData);
+//             const [x, y, z] = frameData.pose.position;
+//             if (x === 0 &&  y === 0 && z === 0) {
+//                 ar.onTarStateChanged('limited');
+//             } else {
+//                 ar.onTarStateChanged('normal');
+//             }
+//         }
+//     });
+// }
 
-// trigger camera position change every frame
-render.on('CAMERA_TRANSFORM_CHANGE', () => {
-    const vrDisplay = ar.getVRDisplay();
-    // 需要获取到vrDisplay对象并且ar引擎下完成才能做业务逻辑
-    if (vrDisplay && ar.isEngineDownload()) {
-        engine.onCameraTransformChange();
-    }
-});
+// // trigger camera position change every frame
+// render.on('CAMERA_TRANSFORM_CHANGE', () => {
+//     const vrDisplay = ar.getVRDisplay();
+//     // 需要获取到vrDisplay对象并且ar引擎下完成才能做业务逻辑
+//     if (vrDisplay && ar.isEngineDownload()) {
+//         engine.onCameraTransformChange();
+//     }
+// });
 
 
 /**
  * 一切ready后的业务主逻辑
  */
-render.on('MARKER_FOLLOW', () => {
-    if (task) {
-        task.follow();
-    }
-});
+// render.on('MARKER_FOLLOW', () => {
+//     if (task) {
+//         task.follow();
+//     }
+// });
 
 function ARInit() {
     ar.load()
@@ -52,23 +52,23 @@ function ARInit() {
              * ar引擎加载，load函数有3个参数，后两个为回调函数onStartCallback和onCompleteCallback
              */
             engine.load(display, null, () => {
-                task = new Task(ar, render, engine);
+                // task = new Task(ar, render, engine);
 
-                const run = (preState, nextState) => {
-                    task.run(preState, nextState);
-                };
+                // const run = (preState, nextState) => {
+                //     task.run(preState, nextState);
+                // };
 
-                if (ar.getCurrentState() === 'normal') {
-                    run();
-                } else {
-                    /**
-                     *  将run callback注册到ar的状态转移函数中，
-                     *  当调用ar.onTarStateChanged('normal')或者 ar.onTarStateChanged('limited') ， run会触发，
-                     *  所以run函数要做不同状态间转换处理
-                     */
-                    ar.setNotAvailable2NormalFunc(run);
-                    ar.setLimited2NormalFunc(run);
-                }
+                // if (ar.getCurrentState() === 'normal') {
+                //     run();
+                // } else {
+                //     /**
+                //      *  将run callback注册到ar的状态转移函数中，
+                //      *  当调用ar.onTarStateChanged('normal')或者 ar.onTarStateChanged('limited') ， run会触发，
+                //      *  所以run函数要做不同状态间转换处理
+                //      */
+                //     ar.setNotAvailable2NormalFunc(run);
+                //     ar.setLimited2NormalFunc(run);
+                // }
             });
         })
         .catch((e) => {
