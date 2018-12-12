@@ -60,7 +60,7 @@
     var getUrl = function (url) {
         var jsUrl = url;
         if (window.versionData && window.versionData[jsUrl] != null) {
-            jsUrl = data[jsUrl];
+            jsUrl = window.versionData[jsUrl];
         }
         return jsUrl;
     }
