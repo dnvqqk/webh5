@@ -149,5 +149,5 @@ this.vspsArr[1][2]={
         _super.prototype.init.call(this);
     }
     return wmy_shader;
-}(window["_WmyShader"]));
+}(window['_WmyShader']));
 new wmy_shader();
