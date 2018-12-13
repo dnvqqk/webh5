@@ -1,0 +1,7 @@
+(function (window) {
+    var _WmyShader = (function () {
+
+    });
+    
+window["_WmyShader"]=_WmyShader;
+})(window)
