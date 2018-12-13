@@ -1,6 +1,5 @@
 (function (window,document,Laya) {
 var _WmyShader = (function () {
-    
     function _WmyShader() {
         this.__attributeMap={
             'a_Position':/*laya.d3.graphics.Vertex.VertexMesh.MESH_POSITION0*/0,
@@ -67,7 +66,7 @@ var _WmyShader = (function () {
 
     _WmyShader.prototype.init = function () {
         this._shader["w_vsPsArr"]=this._vsPsArr;
-        for (var key in this._vsPsArr) {
+        for (const key in this._vsPsArr) {
             if (this._vsPsArr.hasOwnProperty(key)) {
                 var vsps=this._vsPsArr[key];
                 this._shader.addShaderPass(vsps[0],vsps[1]);
@@ -77,7 +76,7 @@ var _WmyShader = (function () {
     
     _WmyShader.prototype.setAttributeMap = function (attributeMap) {
         if (attributeMap != null) {
-            for (var key in attributeMap) {
+            for (const key in attributeMap) {
                 if (attributeMap.hasOwnProperty(key)) {
                     this.__attributeMap[key] = attributeMap[key];
                 }
@@ -88,7 +87,7 @@ var _WmyShader = (function () {
     _WmyShader.prototype.setUniformMap = function (uniformMap) {
         this._shader["w_uniformMap"]=uniformMap;
         if (uniformMap != null) {
-            for (var key in uniformMap) {
+            for (const key in uniformMap) {
                 if (uniformMap.hasOwnProperty(key)) {
                     uniformMap[key][1]=Laya.Shader3D.PERIOD_MATERIAL;
                     this.__uniformMap[key] = uniformMap[key];
@@ -569,7 +568,7 @@ void main()
     }
 
     
-    _WmyShader.setMaterial = function (target,mat,shaderName,isNewMateria) {
+    _WmyShader.setMaterial = function (target,mat,shaderName,isNewMateria=false) {
         if(target==null)return null;
         if(mat==null)return null;
         var wmyValues=mat["wmyValues"];
@@ -614,8 +613,8 @@ void main()
         var vsPsArr=shader["w_vsPsArr"];
         if(vsPsArr){
             for (let i = 0; i < vsPsArr.length; i++) {
-                var renderDataObj = vsPsArr[i][2];
-                for (var key in renderDataObj) {
+                const renderDataObj = vsPsArr[i][2];
+                for (const key in renderDataObj) {
                     if (renderDataObj.hasOwnProperty(key)) {
                         if(sharedMaterial.hasOwnProperty(key)){
                             sharedMaterial[key]=renderDataObj[key];
@@ -630,7 +629,7 @@ void main()
         }
         //初始值
         if (shader["w_uniformMap"] != null) {
-            for (var key in shader["w_uniformMap"]) {
+            for (const key in shader["w_uniformMap"]) {
                 if (shader["w_uniformMap"].hasOwnProperty(key)) {
                     var initId=shader["w_uniformMap"][key][0];
                     var initV=wmyValues[key];
@@ -668,7 +667,7 @@ void main()
         return sharedMaterial;
     }
 
-    _WmyShader.Sprite3D_ShaderValues = function (target,valueName,value,matsId) {
+    _WmyShader.Sprite3D_ShaderValues = function (target,valueName,value,matsId=-1) {
         var tObjArr=_WmyShader.getChildrenComponent(target,Laya.RenderableSprite3D);
         for (let i = 0; i < tObjArr.length; i++) {
             var rP3d = tObjArr[i];
@@ -682,8 +681,7 @@ void main()
      * @param	value	值
      * @param	matsId	材质球ID
      */
-    _WmyShader.RenderableSprite3D_ShaderValues = function (target,valueName,value,matsId) {
-        if(matsId==null)matsId=-1;
+    _WmyShader.RenderableSprite3D_ShaderValues = function (target,valueName,value,matsId=-1) {
         var renderer=target["meshRenderer"];
         if(renderer==null){
             renderer=target["skinnedMeshRenderer"];
@@ -695,14 +693,14 @@ void main()
 
         var isOK=true;
         for (let i = 0; i < ms.length; i++) {
-            var m = ms[i];
-            var uniformMap= m._shader._uniformMap[valueName];
+            const m = ms[i];
+            const uniformMap= m._shader._uniformMap[valueName];
             if(!uniformMap)continue;
             if(isMatsId){
                 if(matsId!=i)continue;
             }
             try {
-                var valueId=uniformMap[0];
+                const valueId=uniformMap[0];
                 if(value instanceof Boolean){
                     m._shaderValues.setBool(valueId,value);
                 }
@@ -838,5 +836,5 @@ void main()
     return _WmyShader;
 }());
 
-window["_WmyShader"]=_WmyShader;
 })(window,document,Laya)
+window["_WmyShader"]=_WmyShader;
