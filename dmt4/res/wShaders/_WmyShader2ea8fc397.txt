@@ -1,4 +1,4 @@
-(function (window,document,Laya) {
+(function (window,Laya) {
 var _WmyShader = (function () {
     _WmyShader.prototype._setVs = function (vs) {
         if(vs==null)return "";
@@ -198,6 +198,5 @@ void main()
 
     return _WmyShader;
 }());
-
-})(window,document,Laya)
 window["_WmyShader"]=_WmyShader;
+})(window,Laya)
