@@ -1,0 +1,1 @@
+window.screenOrientation="sensor_landscape",loadLib("loadInfo.js"),loadLib("slibs/laya.core.js"),loadLib("slibs/laya.webgl.js"),loadLib("slibs/laya.d3.js"),loadLib("slibs/laya.physics3D.js"),loadLib("slibs/laya.html.js"),loadLib("wlibs/fairygui.js"),loadLib("wlibs/vconsole.min.js"),loadLib("js/bundle.js"),loadLib("res/wShaders/Wmy_IndexShader.js");
