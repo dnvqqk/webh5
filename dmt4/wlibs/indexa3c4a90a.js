@@ -1,13 +1,4 @@
 (function (window) {
-    window.onerror=function (msg,url,line,column,detail){
-        //wmy
-        if(!this["vConsole"]){
-            this["vConsole"] = new window["VConsole"]();
-            this["vConsole"].switchPos.startY = 40;
-            console.error("出错啦，\n"+msg+"\n"+detail.stack);
-        }
-    }
-
     window.jsUrlArr = [];
     var _http=new window["XMLHttpRequest"]();
     window.loadLib = function (src) {
