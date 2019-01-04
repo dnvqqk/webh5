@@ -1,6 +1,7 @@
+//wmy版本_2019/1/3/;
 (function (window,document,Laya) {
-var _WmyShader = (function () {
-    function _WmyShader() {
+var Base_WmyShader = (function () {
+    function Base_WmyShader() {
         this.__attributeMap={
             'a_Position':/*laya.d3.graphics.Vertex.VertexMesh.MESH_POSITION0*/0,
             'a_Color':/*laya.d3.graphics.Vertex.VertexMesh.MESH_COLOR0*/1,
@@ -55,7 +56,7 @@ var _WmyShader = (function () {
         };
 
         this._vsPsArr = [];
-        Laya.Shader3D["wmyInit"]=true;
+        Laya.Shader3D['wmyInit']=true;
 
         var _shaderName=this.shaderName;
         var spriteDefines=Laya.SkinnedMeshSprite3D.shaderDefines;
@@ -64,8 +65,8 @@ var _WmyShader = (function () {
         // setTimeout(this.init,20,this);
     }
 
-    _WmyShader.prototype.init = function () {
-        this._shader["w_vsPsArr"]=this._vsPsArr;
+    Base_WmyShader.prototype.init = function () {
+        this._shader['w_vsPsArr']=this._vsPsArr;
         for (var key in this._vsPsArr) {
             if (this._vsPsArr.hasOwnProperty(key)) {
                 var vsps=this._vsPsArr[key];
@@ -74,7 +75,7 @@ var _WmyShader = (function () {
         }
     }
     
-    _WmyShader.prototype.setAttributeMap = function (attributeMap) {
+    Base_WmyShader.prototype.setAttributeMap = function (attributeMap) {
         if (attributeMap != null) {
             for (var key in attributeMap) {
                 if (attributeMap.hasOwnProperty(key)) {
@@ -84,8 +85,8 @@ var _WmyShader = (function () {
         }
     };
     
-    _WmyShader.prototype.setUniformMap = function (uniformMap) {
-        this._shader["w_uniformMap"]=uniformMap;
+    Base_WmyShader.prototype.setUniformMap = function (uniformMap) {
+        this._shader['w_uniformMap']=uniformMap;
         if (uniformMap != null) {
             for (var key in uniformMap) {
                 if (uniformMap.hasOwnProperty(key)) {
@@ -96,7 +97,7 @@ var _WmyShader = (function () {
         }
     };
 
-    _WmyShader.prototype.setVsPs = function (vs,ps,renderData) {
+    Base_WmyShader.prototype.setVsPs = function (vs,ps,renderData) {
         if (vs != null && ps!=null) {
             vs=this._setVs(vs);
             ps=this._setPs(ps);
@@ -107,11 +108,11 @@ var _WmyShader = (function () {
         }
     };
 
-    _WmyShader.prototype._setVs = function (vs) {
-        if(vs==null)return "";
-        if(vs.indexOf("wmyMain(")<0)return vs;
+    Base_WmyShader.prototype._setVs = function (vs) {
+        if(vs==null)return '';
+        if(vs.indexOf('wmyMain(')<0)return vs;
         var _Vs=`
-#include "Lighting.glsl";
+#include 'Lighting.glsl';
 
 attribute vec4 a_Position;
 uniform mat4 u_MvpMatrix;
@@ -304,9 +305,9 @@ void main()
     }
 
 
-    _WmyShader.prototype._setPs = function (ps) {
-        if(ps==null)return "";
-        if(ps.indexOf("wmyMain(")<0)return ps;
+    Base_WmyShader.prototype._setPs = function (ps) {
+        if(ps==null)return '';
+        if(ps.indexOf('wmyMain(')<0)return ps;
         var _Ps=`
 #ifdef HIGHPRECISION
 precision highp float;
@@ -314,7 +315,7 @@ precision highp float;
 precision mediump float;
 #endif
 
-#include "Lighting.glsl";
+#include 'Lighting.glsl';
 
 uniform vec4 u_DiffuseColor;
 
@@ -381,7 +382,7 @@ uniform vec3 u_AmbientColor;
     varying vec3 v_PositionWorld;
 #endif
 
-#include "ShadowHelper.glsl"
+#include 'ShadowHelper.glsl'
 varying float v_posViewZ;
 #ifdef RECEIVESHADOW
     #if defined(SHADOWMAP_PSSM2)||defined(SHADOWMAP_PSSM3)
@@ -499,10 +500,11 @@ void main_normal()
 			shadowValue = getShadowPSSM1( u_shadowMap1,v_lightMVPPos,u_shadowPSSMDistance,u_shadowPCFoffset,v_posViewZ,0.001);
 		#endif
 		//gl_FragColor =vec4(mainColor.rgb*(globalDiffuse + diffuse)*shadowValue,mainColor.a);
-		gl_FragColor = wmyMain(mainColor,(globalDiffuse + diffuse * shadowValue * 1.1));
+		//gl_FragColor = wmyMain(mainColor,(globalDiffuse + diffuse * shadowValue * 1.1));
+        gl_FragColor = wmyMain(mainColor,globalDiffuse,diffuse,shadowValue);
 	#else
 		//gl_FragColor =vec4(mainColor.rgb*(globalDiffuse + diffuse),mainColor.a);
-		gl_FragColor = wmyMain(mainColor, globalDiffuse);
+		gl_FragColor = wmyMain(mainColor,globalDiffuse,diffuse,1.0);
 	#endif
     /*
 	#if defined(DIRECTIONLIGHT)||defined(POINTLIGHT)||defined(SPOTLIGHT)
@@ -532,310 +534,8 @@ void main()
         return _Ps;
     }
 
-    _WmyShader.setMaterialAll = function (target,wmyMatsUrl,complete) {
-        var url=wmyMatsUrl.substr(0,wmyMatsUrl.lastIndexOf("/"))+"/";
-        Laya.loader.load(wmyMatsUrl,Laya.Handler.create(this,(_url,data)=>{
-            if(data==null){
-                console.warn("wmyMats-出错:",newMatsUrl);
-                return;
-            }
-            var isShader=false;
-            var stNum=data.length;
-            var ctNum=0;
-            for (var i = 0; i < stNum; i++) {
-                var obj = data[i];
-                if(obj["targetName"]=="")continue;
-                var target3D=_WmyShader.getObj3d(target,obj["targetName"]);
-                if(target3D==null)continue;
-                isShader=true;
-                var matUrl=_url+obj["matUrl"];
-                Laya.BaseMaterial.load(matUrl,Laya.Handler.create(this,(_target3D,m)=>{
-                    _WmyShader.setMaterial(_target3D,m);
-                    ctNum+=1;
-                    if(ctNum>=stNum){
-                        if(complete!=null){
-                            complete.run();
-                        }
-                    }
-                },[target3D]))
-            }
-            if(!isShader){
-                if(complete!=null){
-                    complete.run();
-                }
-            }
-        },[url]),null,Laya.Loader.JSON);
-    }
-
-    
-    _WmyShader.setMaterial = function (target,mat,shaderName,isNewMateria) {
-        if(target==null)return null;
-        if(mat==null)return null;
-        var wmyValues=mat["wmyValues"];
-        if(wmyValues==null)return null;
-        if(shaderName==undefined){
-            shaderName=wmyValues.shaderName;
-        }
-        if(shaderName==undefined)return null;
-        var shader=Laya.Shader3D.find(shaderName);
-        if(shader==null)return null;
-        mat.setShaderName(shaderName);
-
-        var renderer;
-        var sharedMaterial;
-        if(target instanceof Laya.SkinnedMeshSprite3D){
-            renderer=(target).skinnedMeshRenderer;
-            if(renderer==null)return null;
-            sharedMaterial=renderer.sharedMaterial;
-        }
-        else{
-            renderer=(target).meshRenderer;
-            if(renderer==null)return null;
-            sharedMaterial=renderer.sharedMaterial;
-        }
-
-        if(sharedMaterial==null){
-            console.log("没有sharedMaterial:",target,shaderUrl);
-            return null;
-        }
-        if(isNewMateria){
-            sharedMaterial=sharedMaterial.clone();
-            renderer.sharedMaterial=sharedMaterial;
-        }
-        if(mat){
-            for(var key in mat){
-                try {
-                    sharedMaterial[key]=mat[key];
-                } catch (error) {}
-            }
-        }
-        //渲染模式
-        var vsPsArr=shader["w_vsPsArr"];
-        if(vsPsArr){
-            for (let i = 0; i < vsPsArr.length; i++) {
-                var renderDataObj = vsPsArr[i][2];
-                for (var key in renderDataObj) {
-                    if (renderDataObj.hasOwnProperty(key)) {
-                        if(sharedMaterial.hasOwnProperty(key)){
-                            sharedMaterial[key]=renderDataObj[key];
-                        }
-                        var renderState=sharedMaterial.getRenderState(i);
-                        if(renderState.hasOwnProperty(key)){
-                            renderState[key]=renderDataObj[key];
-                        }
-                    }
-                }
-            }
-        }
-        //初始值
-        if (shader["w_uniformMap"] != null) {
-            for (var key in shader["w_uniformMap"]) {
-                if (shader["w_uniformMap"].hasOwnProperty(key)) {
-                    var initId=shader["w_uniformMap"][key][0];
-                    var initV=wmyValues[key];
-                    if(initV!=null){
-                        initV = initV.split(",");
-                        if(initV.length==4){
-                           sharedMaterial._shaderValues.setVector(initId,new Laya.Vector4(parseFloat(initV[0]),parseFloat(initV[1]),parseFloat(initV[2]),parseFloat(initV[3])));
-                        }
-                        else if(initV.length==3){
-                           sharedMaterial._shaderValues.setVector(initId,new Laya.Vector3(parseFloat(initV[0]),parseFloat(initV[1]),parseFloat(initV[2])));
-                        }
-                        else if(initV.length==2){
-                           sharedMaterial._shaderValues.setVector(initId,new Laya.Vector2(parseFloat(initV[0]),parseFloat(initV[1])));
-                        }
-                        else if(initV.length==1){
-                            if(!isNaN(parseFloat(initV[0]))){
-                                sharedMaterial._shaderValues.setNumber(initId,parseFloat(initV[0]));
-                            }
-                            else{
-                                var strObj=initV[0]+"";
-                                if(strObj=="tex"){
-                                    var tex=sharedMaterial[key];
-                                    if(tex==null){
-                                        tex=new Laya.Texture2D(0,0,0,true);
-                                    }
-                                    sharedMaterial._shaderValues.setTexture(initId,tex);
-                                }
-                            }
-                        }
-                    }
-                }        
-            }
-        }
-
-        return sharedMaterial;
-    }
-
-    _WmyShader.Sprite3D_ShaderValues = function (target,valueName,value,matsId) {
-        var tObjArr=_WmyShader.getChildrenComponent(target,Laya.RenderableSprite3D);
-        for (let i = 0; i < tObjArr.length; i++) {
-            var rP3d = tObjArr[i];
-            _WmyShader.RenderableSprite3D_ShaderValues(rP3d,valueName,value,matsId);
-        }
-    }
-    
-    /**
-     * @param	target	对象
-     * @param	valueName 值的名字
-     * @param	value	值
-     * @param	matsId	材质球ID
-     */
-    _WmyShader.RenderableSprite3D_ShaderValues = function (target,valueName,value,matsId) {
-        if(matsId==null)matsId=-1;
-        var renderer=target["meshRenderer"];
-        if(renderer==null){
-            renderer=target["skinnedMeshRenderer"];
-        }
-        if(!renderer)return false;
-        var ms=renderer.sharedMaterials;
-        if(ms.length<=0)return false;
-        var isMatsId=matsId<0?false:true;
-
-        var isOK=true;
-        for (let i = 0; i < ms.length; i++) {
-            var m = ms[i];
-            var uniformMap= m._shader._uniformMap[valueName];
-            if(!uniformMap)continue;
-            if(isMatsId){
-                if(matsId!=i)continue;
-            }
-            try {
-                var valueId=uniformMap[0];
-                if(value instanceof Boolean){
-                    m._shaderValues.setBool(valueId,value);
-                }
-                else if(!isNaN(value)){
-                    var v=value+"";
-                    if(v.indexOf(".")<0){
-                        m._shaderValues.setInt(valueId,value);
-                    }
-                    else{
-                        m._shaderValues.setNumber(valueId,value);
-                    }
-                }
-                else if(value instanceof Laya.BaseVector){
-                    m._shaderValues.setVector(valueId,value);
-                }
-                else if(value instanceof Laya.Quaternion){
-                    m._shaderValues.setQuaternion(valueId,value);
-                }
-                else if(value instanceof Laya.Matrix4x4){
-                    m._shaderValues.setMatrix4x4(valueId,value);
-                }
-                else if(value instanceof Laya.Texture){
-                    m._shaderValues.setTexture(valueId,value);
-                }
-                else{
-                    isOK=false;
-                }
-            } catch (error) {
-                isOK=false;
-            }
-        }
-        return isOK;
-    }
-
-
-    _WmyShader.onInstanceName = function (name) {
-        var instance=null;
-		try {
-            var args = [];
-            for (var _i = 1; _i < arguments.length; _i++) {
-                args[_i - 1] = arguments[_i];
-            }
-            instance = Object.create(window[name].prototype);
-			instance.constructor.apply(instance, args);
-        } catch (error) {}
-        return instance;
-    };
-    
-    _WmyShader.getObjectClass = function (obj) {
-        if (obj && obj.constructor && obj.constructor.toString()) {
-          /*
-           * for browsers which have name property in the constructor
-           * of the object,such as chrome 
-           */
-          if(obj.constructor.name) {
-           return obj.constructor.name;
-          }
-          var str = obj.constructor.toString();
-          /*
-           * executed if the return of object.constructor.toString() is 
-           * "[object objectClass]"
-           */
-          if(str.charAt(0) == '[')
-          {
-            var arr = str.match(/\[\w+\s*(\w+)\]/);
-          } else {
-            /*
-             * executed if the return of object.constructor.toString() is 
-             * "function objectClass () {}"
-             * for IE Firefox
-             */
-            var arr = str.match(/function\s*(\w+)/);
-          }
-          if (arr && arr.length == 2) {
-             return arr[1];
-          }
-         }
-         return undefined; 
-    };
-
-    _WmyShader.getObj3d = function (target,objName) {
-        if (target == null)
-        {
-            return null;
-        }
-        if(target.name==objName){
-            return target;
-        }
-        for (var i = 0; i < target._children.length; i++) {
-            var o = target._children[i];
-            if (o._children.length <= 0)
-            {
-                if(o.name==objName){
-                    return o;
-                }
-            }
-            else{
-                var tempObj=this.getObj3d(o,objName);
-                if(tempObj!=null){
-                    return tempObj;
-                }
-            }
-        }
-        return null;
-    }
-
-    _WmyShader.getChildrenComponent = function (target,clas,arr) {
-        if(arr==null)arr=[];
-        
-        if (target == null)
-        {
-            return arr;
-        }
-
-        var obj=target.getComponent(clas);
-        if(obj==null){
-            if(target instanceof clas){
-                obj=target;
-            }
-        }
-        if(obj!=null && arr.indexOf(obj)<0){
-            arr.push(obj);
-        }
-        if(target._children==null) return arr;
-
-        for (var i = 0; i < target._children.length; i++) {
-            var o = target._children[i];
-            this.getChildrenComponent(o,clas,arr);
-        }
-        return arr;
-    }
-
-    return _WmyShader;
+    return Base_WmyShader;
 }());
 
-window["_WmyShader"]=_WmyShader;
+window['Base_WmyShader']=Base_WmyShader;
 })(window,document,Laya)
