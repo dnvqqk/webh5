@@ -19,4 +19,4 @@ loadLib("wlibs/fairyguibb821e99.js");
 //
 loadLib("wlibs/vconsole.minbac6b63f.js");
 //主逻辑bundle
-loadLib("js/bundle29fb265c.js");
+loadLib("js/bundle8386f081.js");
