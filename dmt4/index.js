@@ -20,6 +20,3 @@ loadLib("wlibs/fairygui.js");
 loadLib("wlibs/vconsole.min.js");
 //主逻辑bundle
 loadLib("js/bundle.js");
-//shader------
-loadLib('res/wShaders/Base_WmyShader.js');
-loadLib('res/wShaders/wmyLaya_wmyLbt.js');
