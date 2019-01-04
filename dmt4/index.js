@@ -19,4 +19,4 @@ loadLib("wlibs/fairygui.js");
 //
 //loadLib("wlibs/vconsole.min.js");
 //主逻辑bundle
-loadLib("js/bundle.js");
+loadLib("js/bundle.js?1");
