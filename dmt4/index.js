@@ -17,6 +17,6 @@ loadLib("slibs/laya.html.js");
 //FUI
 loadLib("wlibs/fairygui.js");
 //
-loadLib("wlibs/vconsole.min.js");
+//loadLib("wlibs/vconsole.min.js");
 //主逻辑bundle
 loadLib("js/bundle.js");
