@@ -90,5 +90,5 @@
     setTimeout(function(){
         window["wmyVTime"]="?"+Date.now();
         load("version.json"+window["wmyVTime"]);
-    },50);
+    },100);
 })(window)
